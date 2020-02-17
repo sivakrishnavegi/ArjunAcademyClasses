@@ -1,0 +1,36 @@
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+
+
+button {
+  outline: none;
+  border: none;
+}
+
+
+
+.switch {
+
+  background-color: transparent;
+  margin-top: 10rem;
+ 
+  
+  
+}
+
+.switch:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.mode:before {
+  
+  color: #ffffff;
+  content: "Light Mode";
+  
+}
+

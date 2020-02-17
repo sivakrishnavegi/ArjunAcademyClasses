@@ -37,7 +37,7 @@ class News extends React.Component {
 
     render() {
 
-        const { isLoaded, items } = this.state;
+        const { isLoaded} = this.state;
 
         if (!isLoaded)
             return <div>Loading.....</div>;
@@ -45,6 +45,7 @@ class News extends React.Component {
         return (
             <div className="App">
               {/* <ul>
+              
                     {items.map(item => (
                         <div>
                           <center>

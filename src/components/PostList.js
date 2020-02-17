@@ -1,30 +1,37 @@
-import React, { Component } from 'react'
-import { MDBBtn, MDBCard,MDBContainer,MDBRow ,MDBCardBody, MDBCardImage, MDBCardTitle, MDBCardText, MDBCol } from 'mdbreact';
-
+import React, { Component } from 'react';
+import { MDBBtn,  MDBCardBody, MDBCardImage,  MDBCardText, MDBCol } from 'mdbreact';
 import axios from 'axios';
-export class PostList extends Component {
-    constructor(props) {
-        super(props)
-    
-        this.state = {
-            articles: [],
-            isLoaded: false
-        }
-    }
-    componentDidMount(){
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=a2f39b1fb611435caaf709ba7aa5f86e`)
-        .then(res => {
-          const articles = res.data.articles;
-          // Set state with result
-          console.log(articles);
-          this.setState({ articles: articles , isLoaded: true});
-        })
-        .catch(error => {
-          console.log(error);
-        });
-        
-    }
-    
+import Poster from './Poster'
+class PostList extends Component {
+  constructor(props) {
+    // Pass props to parent class
+    super(props);
+    // Set initial state
+    this.state = {
+      articles: [],
+      isLoaded: false
+    };
+
+   
+  }
+
+  componentDidMount() {
+
+ 
+    // Make HTTP reques with Axios
+    axios
+      .get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=a2f39b1fb611435caaf709ba7aa5f86e`)
+      .then(res => {
+        const articles = res.data.articles;
+      
+        console.log(articles);
+        this.setState({ articles: articles ,  isLoaded: true });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+}
+
   formatDate(date) {
     var time = new Date(date);
     var year = time.getFullYear();
@@ -36,43 +43,58 @@ export class PostList extends Component {
     return composedTime;
   }
 
-    render() {
-       // const {posts, errorMsg}= this.state
-        const { isLoaded, posts } = this.state;
+  
 
-        if (!isLoaded)
-            return <div><center>Hey babe news is Loading ;)</center></div>;
-        return (
-         
-            <div className="cardsContainer">
-            {this.state.articles.map((news, i) => {
-              return (
-                <div className="card" key={i}>
-                  
+  render() {
+    const { isLoaded} = this.state;
+
+    if (!isLoaded)
+        return <div><center>Loading.....</center></div>;
+    return (
+      <div>
+<Poster />
+
+           <MDBCol className="cardsContainerNews">
+        
+        {this.state.articles.map((news, i) => {
           
-          <MDBContainer>
-             <MDBRow key={i}>
-                <MDBCol size="4"> <MDBCard style={{ width: "22rem" }}>
-              <MDBCardImage className="img-fluid" src={news.urlToImage} waves />
-              <MDBCardBody>
-                <MDBCardTitle href={news.url}>{news.title}</MDBCardTitle>
-                <MDBCardText>
-                {news.description}
-                      <p>{this.formatDate(news.publishedAt)}</p>
-                </MDBCardText>
-                <MDBBtn href={news.url}>view more..</MDBBtn>
-              </MDBCardBody>
-            </MDBCard></MDBCol>
-              </MDBRow>
-           </MDBContainer>
-                </div>
+          return (
+            <div className="cardNews" key={i}>
 
+     
+              <div className="contentNews">
                 
-              );
-            })}
-          </div>
-        )
-    }
+                <h3>
+                  <a href={news.url} target="_blank" rel="noopener noreferrer">
+                    {news.title}
+                  </a>
+                </h3>
+                <MDBCardBody>{news.description}</MDBCardBody>
+                <div className="author">
+                  <MDBCardText>
+                    By <i>{news.author ? news.author : this.props.default}</i>
+                  </MDBCardText>
+                  <MDBCardText>{this.formatDate(news.publishedAt)}</MDBCardText>
+                  <MDBBtn href={news.url}>view</MDBBtn>
+                 
+                </div>
+              </div>
+              <div className="imageNews">
+                <MDBCardImage src={news.urlToImage} alt="" />
+              </div>
+            </div>
+          );
+        })}
+      </MDBCol>
+
+      </div>
+   
+    );
+  }
 }
 
-export default PostList
+export default PostList;
+
+
+
+

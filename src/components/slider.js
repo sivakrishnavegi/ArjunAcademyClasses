@@ -10,7 +10,12 @@ import {
 } from 'mdbreact';
 //import DocsLink from '../components/docs';
 //import SectionContainer from './section';
+import  CardsTop from './cardsTop';
 
+
+import "/home/siva/Downloads/ArjunAcademy/src/styles/styles.css";
+import CoursesHome from "./courses"
+import Testimonials from "./Testimonials"
 const CarouselPage = () => {
   return (
   <div>
@@ -53,7 +58,11 @@ const CarouselPage = () => {
             </MDBCarouselItem>
           </MDBCarouselInner>
         </MDBCarousel>
-     
+        <CardsTop />
+<CoursesHome />
+<Testimonials />
+
+
   
   </div>
      

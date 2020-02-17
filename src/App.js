@@ -4,11 +4,15 @@ import {
   MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem ,MDBIcon
   } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
-
 import Routes from './components/routes';
-import PostList from './components/PostList';
-import { course } from './components/course';
+//import PostList from './components/PostList';
+//import { course } from './components/course';
+import StyleApp from './styles/button'
+
+
 class App extends Component {
+  
+  
   state = {
     isOpen: false
   };
@@ -18,10 +22,6 @@ class App extends Component {
   }
 
   render() {
-   
-
- 
-
     return (
      <div>
     <Router>
@@ -36,7 +36,7 @@ class App extends Component {
               <MDBNavLink to="/">Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to={"/news"}>Gallery</MDBNavLink>
+              <MDBNavLink to="">Gallery</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
@@ -45,7 +45,7 @@ class App extends Component {
                 </MDBDropdownToggle>
                 <MDBDropdownMenu>
                   <MDBDropdownItem href="#!" >Result</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Current Afairs</MDBDropdownItem>
+                  <MDBDropdownItem href={"/news"}>Current Afairs</MDBDropdownItem>
                   <MDBDropdownItem href="#!">Online Test</MDBDropdownItem>
                   <MDBDropdownItem href="#!">Resources</MDBDropdownItem>
                 </MDBDropdownMenu>
@@ -89,10 +89,11 @@ class App extends Component {
               </MDBDropdown>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to={"/news"}>Contact us</MDBNavLink>
+              <MDBNavLink to={"/contactus"}>Contact us</MDBNavLink>
             </MDBNavItem>
          
           </MDBNavbarNav>
+          <StyleApp/>
           <MDBNavbarNav right>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="#!">
@@ -121,8 +122,7 @@ class App extends Component {
       </MDBNavbar>
       <Routes />
     </Router>
-   <PostList />
-   <course />
+
      </div>
   
 
