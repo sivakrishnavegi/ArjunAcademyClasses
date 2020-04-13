@@ -58,7 +58,7 @@ class News extends React.Component {
                         </div>
                        
                     ))}
-                </ul> */} 
+                </ul> */} {/*api key changed*/}
                 
             </div>
 
